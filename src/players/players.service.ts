@@ -10,6 +10,7 @@ import { CreatePlayerDto, UpdatePlayerDto } from './dto/index.js';
  * Interfaz para la respuesta de un jugador
  */
 export interface PlayerResponse {
+  id: string;
   name: string;
   created_at: Date;
   updated_at: Date;
@@ -25,7 +26,7 @@ export class PlayersService {
   async create(createPlayerDto: CreatePlayerDto): Promise<PlayerResponse> {
     const { name } = createPlayerDto;
 
-    // Verificar si el jugador ya existe
+    // Verificar si el jugador ya existe (por nombre único)
     const existingPlayer = await this.prisma.players.findUnique({
       where: { name },
     });
@@ -34,7 +35,7 @@ export class PlayersService {
       throw new ConflictException(`El jugador "${name}" ya existe`);
     }
 
-    // Crear el jugador
+    // Crear el jugador (el ID se genera automáticamente)
     const player = await this.prisma.players.create({
       data: { name },
     });
@@ -52,53 +53,51 @@ export class PlayersService {
   }
 
   /**
-   * Obtener un jugador por nombre
+   * Obtener un jugador por ID
    */
-  async findOne(name: string): Promise<PlayerResponse> {
+  async findOne(id: string): Promise<PlayerResponse> {
     const player = await this.prisma.players.findUnique({
-      where: { name },
+      where: { id },
     });
 
     if (!player) {
-      throw new NotFoundException(`Jugador "${name}" no encontrado`);
+      throw new NotFoundException(`Jugador con ID "${id}" no encontrado`);
     }
 
     return player;
   }
 
   /**
-   * Actualizar un jugador (cambiar nombre)
+   * Actualizar un jugador
    */
   async update(
-    currentName: string,
+    id: string,
     updatePlayerDto: UpdatePlayerDto,
   ): Promise<PlayerResponse> {
-    const { name: newName } = updatePlayerDto;
-
     // Verificar que el jugador existe
     const existingPlayer = await this.prisma.players.findUnique({
-      where: { name: currentName },
+      where: { id },
     });
 
     if (!existingPlayer) {
-      throw new NotFoundException(`Jugador "${currentName}" no encontrado`);
+      throw new NotFoundException(`Jugador con ID "${id}" no encontrado`);
     }
 
-    // Si el nombre es diferente, verificar que no exista otro con ese nombre
-    if (newName !== currentName) {
+    // Si se está cambiando el nombre, verificar que no exista otro con ese nombre
+    if (updatePlayerDto.name && updatePlayerDto.name !== existingPlayer.name) {
       const playerWithNewName = await this.prisma.players.findUnique({
-        where: { name: newName },
+        where: { name: updatePlayerDto.name },
       });
 
       if (playerWithNewName) {
-        throw new ConflictException(`El nombre "${newName}" ya está en uso`);
+        throw new ConflictException(`El nombre "${updatePlayerDto.name}" ya está en uso`);
       }
     }
 
     // Actualizar el jugador
     const player = await this.prisma.players.update({
-      where: { name: currentName },
-      data: { name: newName },
+      where: { id },
+      data: updatePlayerDto,
     });
 
     return player;
@@ -107,21 +106,21 @@ export class PlayersService {
   /**
    * Eliminar un jugador
    */
-  async remove(name: string): Promise<{ message: string }> {
+  async remove(id: string): Promise<{ message: string }> {
     // Verificar que el jugador existe
     const existingPlayer = await this.prisma.players.findUnique({
-      where: { name },
+      where: { id },
     });
 
     if (!existingPlayer) {
-      throw new NotFoundException(`Jugador "${name}" no encontrado`);
+      throw new NotFoundException(`Jugador con ID "${id}" no encontrado`);
     }
 
     // Eliminar el jugador (las partidas se eliminan en cascada)
     await this.prisma.players.delete({
-      where: { name },
+      where: { id },
     });
 
-    return { message: `Jugador "${name}" eliminado exitosamente` };
+    return { message: `Jugador "${existingPlayer.name}" eliminado exitosamente` };
   }
 }

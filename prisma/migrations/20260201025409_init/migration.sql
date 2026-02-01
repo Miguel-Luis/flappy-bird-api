@@ -12,15 +12,18 @@ CREATE TABLE "auth_sessions" (
 
 -- CreateTable
 CREATE TABLE "players" (
+    "id" UUID NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "players_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "games" (
     "id" UUID NOT NULL,
-    "player_id" VARCHAR(255) NOT NULL,
+    "player_id" UUID NOT NULL,
     "score" INTEGER NOT NULL,
     "achieved_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -31,4 +34,4 @@ CREATE TABLE "games" (
 CREATE UNIQUE INDEX "players_name_key" ON "players"("name");
 
 -- AddForeignKey
-ALTER TABLE "games" ADD CONSTRAINT "games_player_id_fkey" FOREIGN KEY ("player_id") REFERENCES "players"("name") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "games" ADD CONSTRAINT "games_player_id_fkey" FOREIGN KEY ("player_id") REFERENCES "players"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -19,7 +19,8 @@ model auth_sessions {
 
 // Tabla de jugadores
 model players {
-  name String @unique @db.VarChar(255)
+  id         String   @id @default(uuid()) @db.Uuid
+  name       String @unique @db.VarChar(255)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -30,10 +31,10 @@ model players {
 // Tabla de partidas/puntuaciones
 model games {
   id          String   @id @default(uuid()) @db.Uuid
-  player_id   String   @db.VarChar(255)
+  player_id   String   @db.Uuid
   score       Int
   achieved_at DateTime @default(now())
 
   // Relación con el jugador
-  player players @relation(fields: [player_id], references: [name], onDelete: Cascade)
+  player players @relation(fields: [player_id], references: [id], onDelete: Cascade)
 }

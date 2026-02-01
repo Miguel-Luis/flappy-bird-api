@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsInt, Min } from 'class-validator';
+import { IsString, IsNotEmpty, IsInt, Min, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
@@ -6,11 +6,12 @@ import { ApiProperty } from '@nestjs/swagger';
  */
 export class CreateGameDto {
   @ApiProperty({
-    description: 'Nombre del jugador que realizó la partida',
-    example: 'jugador1',
+    description: 'ID del jugador que realizó la partida (UUID)',
+    example: '550e8400-e29b-41d4-a716-446655440000',
   })
-  @IsString({ message: 'El nombre del jugador debe ser texto' })
-  @IsNotEmpty({ message: 'El nombre del jugador es requerido' })
+  @IsString({ message: 'El ID del jugador debe ser texto' })
+  @IsNotEmpty({ message: 'El ID del jugador es requerido' })
+  @IsUUID('4', { message: 'El ID del jugador debe ser un UUID válido' })
   player_id: string;
 
   @ApiProperty({

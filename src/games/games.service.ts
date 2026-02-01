@@ -21,6 +21,7 @@ export interface GameResponse {
  */
 export interface GameWithPlayerResponse extends GameResponse {
   player: {
+    id: string;
     name: string;
     created_at: Date;
     updated_at: Date;
@@ -37,13 +38,13 @@ export class GamesService {
   async create(createGameDto: CreateGameDto): Promise<GameResponse> {
     const { player_id, score } = createGameDto;
 
-    // Verificar que el jugador existe
+    // Verificar que el jugador existe (por ID)
     const player = await this.prisma.players.findUnique({
-      where: { name: player_id },
+      where: { id: player_id },
     });
 
     if (!player) {
-      throw new BadRequestException(`El jugador "${player_id}" no existe`);
+      throw new BadRequestException(`El jugador con ID "${player_id}" no existe`);
     }
 
     // Crear la partida
@@ -68,20 +69,20 @@ export class GamesService {
   }
 
   /**
-   * Obtener partidas por jugador
+   * Obtener partidas por ID de jugador
    */
-  async findByPlayer(playerName: string): Promise<GameResponse[]> {
+  async findByPlayer(playerId: string): Promise<GameResponse[]> {
     // Verificar que el jugador existe
     const player = await this.prisma.players.findUnique({
-      where: { name: playerName },
+      where: { id: playerId },
     });
 
     if (!player) {
-      throw new NotFoundException(`Jugador "${playerName}" no encontrado`);
+      throw new NotFoundException(`Jugador con ID "${playerId}" no encontrado`);
     }
 
     return this.prisma.games.findMany({
-      where: { player_id: playerName },
+      where: { player_id: playerId },
       orderBy: { achieved_at: 'desc' },
     });
   }
@@ -103,14 +104,49 @@ export class GamesService {
   }
 
   /**
-   * Obtener el ranking (top scores)
+   * Obtener el ranking (top scores) - mejor puntaje de cada jugador
    */
-  async getTopScores(limit: number = 10): Promise<GameWithPlayerResponse[]> {
-    return this.prisma.games.findMany({
-      include: { player: true },
-      orderBy: { score: 'desc' },
+  async getTopScores(limit: number = 10): Promise<{ player_name: string; score: number; achieved_at: Date }[]> {
+    // Agrupar por jugador y obtener el puntaje máximo de cada uno
+    const groupedScores = await this.prisma.games.groupBy({
+      by: ['player_id'],
+      _max: {
+        score: true,
+      },
+      orderBy: {
+        _max: {
+          score: 'desc',
+        },
+      },
       take: limit,
     });
+
+    // Obtener los detalles completos de cada partida con el puntaje máximo
+    const result = await Promise.all(
+      groupedScores.map(async (group) => {
+        const game = await this.prisma.games.findFirst({
+          where: {
+            player_id: group.player_id,
+            score: group._max.score!,
+          },
+          select: {
+            score: true,
+            achieved_at: true,
+            player: {
+              select: { name: true },
+            },
+          },
+        });
+
+        return {
+          player_name: game!.player.name,
+          score: game!.score,
+          achieved_at: game!.achieved_at,
+        };
+      }),
+    );
+
+    return result;
   }
 
   /**

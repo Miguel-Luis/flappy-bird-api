@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module.js';
+import { ResponseInterceptor, HttpExceptionFilter } from './common/index.js';
 
 // Cargar variables de entorno desde el archivo .env
 import 'dotenv/config';
@@ -11,6 +12,12 @@ async function bootstrap() {
 
   // Prefijo global para todas las rutas: /api/v1
   app.setGlobalPrefix('api/v1');
+
+  // Interceptor global para respuestas exitosas
+  app.useGlobalInterceptors(new ResponseInterceptor());
+
+  // Filtro global para manejar excepciones
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   // Habilitar validación global de DTOs
   app.useGlobalPipes(

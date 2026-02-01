@@ -75,16 +75,16 @@ export class PlayersController {
   }
 
   /**
-   * GET /players/:name
-   * Obtener un jugador por nombre
+   * GET /players/:id
+   * Obtener un jugador por ID
    */
-  @Get(':name')
+  @Get(':id')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Obtener un jugador por nombre' })
+  @ApiOperation({ summary: 'Obtener un jugador por ID' })
   @ApiParam({
-    name: 'name',
-    description: 'Nombre del jugador',
-    example: 'jugador1',
+    name: 'id',
+    description: 'ID del jugador (UUID)',
+    example: '550e8400-e29b-41d4-a716-446655440000',
   })
   @ApiResponse({
     status: 200,
@@ -98,21 +98,21 @@ export class PlayersController {
     status: 401,
     description: 'No autorizado. Token inválido o expirado.',
   })
-  async findOne(@Param('name') name: string) {
-    return this.playersService.findOne(name);
+  async findOne(@Param('id') id: string) {
+    return this.playersService.findOne(id);
   }
 
   /**
-   * PUT /players/:name
-   * Actualizar un jugador (cambiar nombre)
+   * PUT /players/:id
+   * Actualizar un jugador
    */
-  @Put(':name')
+  @Put(':id')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Actualizar jugador (cambiar nombre)' })
+  @ApiOperation({ summary: 'Actualizar jugador' })
   @ApiParam({
-    name: 'name',
-    description: 'Nombre actual del jugador',
-    example: 'jugador1',
+    name: 'id',
+    description: 'ID del jugador (UUID)',
+    example: '550e8400-e29b-41d4-a716-446655440000',
   })
   @ApiResponse({
     status: 200,
@@ -131,23 +131,23 @@ export class PlayersController {
     description: 'No autorizado. Token inválido o expirado.',
   })
   async update(
-    @Param('name') name: string,
+    @Param('id') id: string,
     @Body() updatePlayerDto: UpdatePlayerDto,
   ) {
-    return this.playersService.update(name, updatePlayerDto);
+    return this.playersService.update(id, updatePlayerDto);
   }
 
   /**
-   * DELETE /players/:name
+   * DELETE /players/:id
    * Eliminar un jugador
    */
-  @Delete(':name')
+  @Delete(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Eliminar jugador' })
   @ApiParam({
-    name: 'name',
-    description: 'Nombre del jugador a eliminar',
-    example: 'jugador1',
+    name: 'id',
+    description: 'ID del jugador a eliminar (UUID)',
+    example: '550e8400-e29b-41d4-a716-446655440000',
   })
   @ApiResponse({
     status: 200,
@@ -161,7 +161,7 @@ export class PlayersController {
     status: 401,
     description: 'No autorizado. Token inválido o expirado.',
   })
-  async remove(@Param('name') name: string) {
-    return this.playersService.remove(name);
+  async remove(@Param('id') id: string) {
+    return this.playersService.remove(id);
   }
 }

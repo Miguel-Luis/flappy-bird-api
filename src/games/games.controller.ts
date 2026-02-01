@@ -103,16 +103,16 @@ export class GamesController {
   }
 
   /**
-   * GET /games/player/:playerName
+   * GET /games/player/:playerId
    * Obtener partidas de un jugador específico
    */
-  @Get('player/:playerName')
+  @Get('player/:playerId')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Obtener partidas de un jugador' })
   @ApiParam({
-    name: 'playerName',
-    description: 'Nombre del jugador',
-    example: 'jugador1',
+    name: 'playerId',
+    description: 'ID del jugador (UUID)',
+    example: '550e8400-e29b-41d4-a716-446655440000',
   })
   @ApiResponse({
     status: 200,
@@ -126,8 +126,8 @@ export class GamesController {
     status: 401,
     description: 'No autorizado. Token inválido o expirado.',
   })
-  async findByPlayer(@Param('playerName') playerName: string) {
-    return this.gamesService.findByPlayer(playerName);
+  async findByPlayer(@Param('playerId') playerId: string) {
+    return this.gamesService.findByPlayer(playerId);
   }
 
   /**
