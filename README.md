@@ -1,98 +1,383 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ npm install
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║    ███████╗██╗      █████╗ ██████╗ ██████╗ ██╗   ██╗    ██████╗ ██╗██████╗   ║
+║    ██╔════╝██║     ██╔══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝    ██╔══██╗██║██╔══██╗  ║
+║    █████╗  ██║     ███████║██████╔╝██████╔╝ ╚████╔╝     ██████╔╝██║██████╔╝  ║
+║    ██╔══╝  ██║     ██╔══██║██╔═══╝ ██╔═══╝   ╚██╔╝      ██╔══██╗██║██╔══██╗  ║
+║    ██║     ███████╗██║  ██║██║     ██║        ██║       ██████╔╝██║██║  ██║  ║
+║    ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝       ╚═════╝ ╚═╝╚═╝  ╚═╝  ║
+║                                                                              ║
+║                        ░█▀▀█ ░█▀▀█ ▀█▀                                       ║
+║                        ░█▄▄█ ░█▄▄█ ░█░                                       ║
+║                        ░█░░░ ░█░░░ ▄█▄                                       ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
-## Compile and run the project
+<div align="center">
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+    █  ★  API Backend para el clásico juego Flappy Bird  ★  █
+    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ```
 
-## Run tests
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-```bash
-# unit tests
-$ npm run test
+</div>
 
-# e2e tests
-$ npm run test:e2e
+---
 
-# test coverage
-$ npm run test:cov
+## 🎮 OBJETIVO DEL PROYECTO
+
+```
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║   Esta API proporciona el backend completo para un juego Flappy Bird.     ║
+║   Permite gestionar jugadores, registrar partidas, mantener un ranking    ║
+║   global y manejar autenticación segura con JWT.                          ║
+║                                                                           ║
+║   ┌─────────────────────────────────────────────────────────────────┐     ║
+║   │  ⬡ Registro y autenticación de usuarios                        │     ║
+║   │  ⬡ Gestión de jugadores (CRUD completo)                        │     ║
+║   │  ⬡ Registro de partidas y puntuaciones                         │     ║
+║   │  ⬡ Ranking global de mejores puntajes                          │     ║
+║   │  ⬡ Documentación interactiva con Swagger                       │     ║
+║   └─────────────────────────────────────────────────────────────────┘     ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## 📋 REQUISITOS PREVIOS
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│                       ANTES DE COMENZAR                                  │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│   ◈ Node.js      v125.5.0 o superior [https://nodejs.org]                │
+│   ◈ npm          v11.8.0 o superior  (viene con Node.js)                 │
+│   ◈ nvm          v1.2.2 o superior   [https://www.nvmnode.com/guide/download.html]
+│   ◈ PostgreSQL   v18.1 o superior    [https://postgresql.org]            │
+│   ◈ Git          cualquier versión   [https://git-scm.com]               │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🚀 GUÍA DE INICIO RÁPIDO
 
-Check out a few resources that may come in handy when working with NestJS:
+### ░▒▓█ PASO 1: CLONAR EL REPOSITORIO █▓▒░
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+git clone https://github.com/tu-usuario/flappy-bird-api.git
+cd flappy-bird-api
+```
 
-## Support
+### ░▒▓█ PASO 2: INSTALAR DEPENDENCIAS █▓▒░
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm install
+```
 
-## Stay in touch
+### ░▒▓█ PASO 3: CONFIGURAR VARIABLES DE ENTORNO █▓▒░
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│  💡 TIP: ¡Simplemente renombra el archivo de ejemplo para crear tu       │
+│          configuración!                                                  │
+└──────────────────────────────────────────────────────────────────────────┘
+```
 
-## License
+**Opción A - Usando línea de comandos:**
+```bash
+# Windows (CMD)
+copy .env.example .env
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Windows (PowerShell)
+Copy-Item .env.example .env
+
+# Linux / macOS
+cp .env.example .env
+```
+
+**Opción B - Manualmente:**
+1. Busca el archivo `.env.example` en la carpeta raíz
+2. Renómbralo a `.env` (solo quítale la parte `.example`)
+3. ¡Listo! ✅
+
+**📝 Explicación de las Variables de Entorno:**
+
+| Variable | Descripción | Valor por Defecto |
+|----------|-------------|-------------------|
+| `PORT` | Puerto del servidor | `3000` |
+| `DATABASE_URL` | Cadena de conexión a PostgreSQL | `postgresql://postgres:admin@localhost:5432/flappy_db?schema=public` |
+| `JWT_SECRET` | Clave secreta para tokens JWT | *(¡cambia esto en producción!)* |
+| `JWT_EXPIRES_IN` | Tiempo de expiración del token | `3600s` (1 hora) |
+
+### ░▒▓█ PASO 4: CREAR LA BASE DE DATOS █▓▒░
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│  🗄️  ¡Asegúrate de que PostgreSQL esté corriendo antes de este paso!     │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+**Crear la base de datos manualmente en PostgreSQL:**
+```sql
+CREATE DATABASE flappy_db;
+```
+
+**O usando la línea de comandos psql:**
+```bash
+psql -U postgres -c "CREATE DATABASE flappy_db;"
+```
+
+### ░▒▓█ PASO 5: EJECUTAR MIGRACIONES █▓▒░
+
+```bash
+npx prisma migrate dev
+
+npx prisma generate
+```
+
+Este comando:
+- Creará todas las tablas en la base de datos
+- Configurará las relaciones entre tablas
+- Generará el cliente de Prisma
+
+### ░▒▓█ PASO 6: INICIAR EL SERVIDOR █▓▒░
+
+```
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                        ¡LISTO PARA JUGAR! 🎮                              ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+```
+
+**Modo desarrollo (con recarga automática):**
+```bash
+npm run start:dev
+```
+
+**Modo producción:**
+```bash
+npm run build
+npm run start:prod
+```
+
+---
+
+## 📖 REFERENCIA DE COMANDOS
+
+```
+┌────────────────────────────────────────────────────────────────────────────┐
+│                          COMANDOS DISPONIBLES                              │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                            │
+│   npm run start:dev      ➤  Iniciar en modo desarrollo (recarga auto)     │
+│   npm run start:prod     ➤  Iniciar en modo producción                    │
+│   npm run build          ➤  Compilar para producción                      │
+│   npm run start          ➤  Iniciar sin recarga automática                │
+│   npm run lint           ➤  Ejecutar ESLint para revisar código           │
+│   npm run format         ➤  Formatear código con Prettier                 │
+│                                                                            │
+├────────────────────────────────────────────────────────────────────────────┤
+│                       COMANDOS DE BASE DE DATOS                            │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                            │
+│   npx prisma migrate dev     ➤  Ejecutar migraciones en desarrollo        │
+│   npx prisma migrate reset   ➤  Reiniciar base de datos (¡BORRA TODO!)    │
+│   npx prisma generate        ➤  Regenerar cliente de Prisma               │
+│   npx prisma studio          ➤  Abrir editor visual de base de datos      │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🌐 ENDPOINTS DE LA API
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│  🔗 URL Base: http://localhost:3000/api/v1                               │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+### 🔐 Autenticación
+
+| Método | Endpoint | Descripción | Requiere Auth |
+|--------|----------|-------------|---------------|
+| `POST` | `/auth/register` | Registrar nuevo usuario | ❌ No |
+| `POST` | `/auth/login` | Iniciar sesión | ❌ No |
+| `POST` | `/auth/refresh` | Refrescar token de acceso | ❌ No |
+| `POST` | `/auth/logout` | Cerrar sesión | ✅ Sí |
+
+### 👤 Jugadores
+
+| Método | Endpoint | Descripción | Requiere Auth |
+|--------|----------|-------------|---------------|
+| `POST` | `/players` | Crear jugador | ✅ Sí |
+| `GET` | `/players` | Obtener todos los jugadores | ✅ Sí |
+| `GET` | `/players/:id` | Obtener jugador por ID | ✅ Sí |
+| `PUT` | `/players/:id` | Actualizar jugador | ✅ Sí |
+| `DELETE` | `/players/:id` | Eliminar jugador | ✅ Sí |
+
+### 🎯 Partidas
+
+| Método | Endpoint | Descripción | Requiere Auth |
+|--------|----------|-------------|---------------|
+| `POST` | `/games` | Crear registro de partida | ✅ Sí |
+| `GET` | `/games` | Obtener todas las partidas | ✅ Sí |
+| `GET` | `/games/:id` | Obtener partida por ID | ✅ Sí |
+| `GET` | `/games/ranking` | Obtener mejores puntajes | ✅ Sí |
+| `GET` | `/games/player/:playerId` | Obtener partidas por jugador | ✅ Sí |
+| `PUT` | `/games/:id` | Actualizar partida | ✅ Sí |
+| `DELETE` | `/games/:id` | Eliminar partida | ✅ Sí |
+
+---
+
+## 📊 FORMATO DE RESPUESTAS DE LA API
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│                       RESPUESTAS ESTANDARIZADAS                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+**✅ Respuesta Exitosa:**
+```json
+{
+  "success": true,
+  "message": "Solicitud exitosa",
+  "data": { ... }
+}
+```
+
+**❌ Respuesta de Error:**
+```json
+{
+  "success": false,
+  "message": "Descripción del error",
+  "data": null
+}
+```
+
+---
+
+## 🗂️ ESTRUCTURA DEL PROYECTO
+
+```
+flappy-bird-api/
+│
+├── 📁 prisma/
+│   └── schema.prisma          # Definición del esquema de base de datos
+│
+├── 📁 src/
+│   ├── 📁 auth/               # Módulo de autenticación
+│   │   ├── dto/               # Objetos de transferencia de datos
+│   │   ├── strategies/        # Estrategia JWT de Passport
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   └── auth.module.ts
+│   │
+│   ├── 📁 common/             # Utilidades compartidas
+│   │   ├── decorators/        # Decoradores personalizados
+│   │   ├── filters/           # Filtros de excepciones
+│   │   ├── guards/            # Guards de autenticación
+│   │   ├── interceptors/      # Interceptores de respuesta
+│   │   ├── interfaces/        # Interfaces de TypeScript
+│   │   └── utils/             # Funciones utilitarias
+│   │
+│   ├── 📁 games/              # Módulo de partidas
+│   ├── 📁 players/            # Módulo de jugadores
+│   ├── 📁 prisma/             # Servicio de Prisma
+│   │
+│   ├── app.module.ts          # Módulo raíz
+│   └── main.ts                # Punto de entrada de la aplicación
+│
+├── .env.example               # Plantilla de variables de entorno
+├── .env                       # Tu configuración local (¡crea este archivo!)
+└── package.json               # Dependencias del proyecto
+```
+
+---
+
+## 🎨 DOCUMENTACIÓN SWAGGER
+
+```
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║   📚 Documentación interactiva de la API disponible en:                   ║
+║                                                                           ║
+║      ➤  http://localhost:3000/api-docs/v1                                 ║
+║                                                                           ║
+║   ¡Prueba todos los endpoints directamente desde tu navegador!            ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+## 🛠️ SOLUCIÓN DE PROBLEMAS
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│                        PROBLEMAS COMUNES                                 │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+**❓ Error "Connection refused" (Conexión rechazada):**
+- Asegúrate de que PostgreSQL esté corriendo
+- Verifica el DATABASE_URL en tu archivo `.env`
+- Comprueba que la base de datos `flappy_db` exista
+
+**❓ Error "Module not found" (Módulo no encontrado):**
+```bash
+npm install
+npx prisma generate
+```
+
+**❓ Error en migración de Prisma:**
+```bash
+npx prisma migrate reset
+```
+⚠️ Advertencia: ¡Esto eliminará todos los datos!
+
+**❓ Puerto ya está en uso:**
+- Cambia el valor de `PORT` en el archivo `.env`
+- O mata el proceso que está usando ese puerto
+
+---
+
+## 📜 LICENCIA
+
+```
+Licencia MIT - ¡Siéntete libre de usar esto para tus proyectos! 🎉
+```
+
+---
+
+<div align="center">
+
+```
+═══════════════════════════════════════════════════════════════════════════════
+
+                    ░█▀▀░█▀█░█▄█░█▀▀░░░█▀█░█░█░█▀▀░█▀▄░█
+                    ░█░█░█▀█░█░█░█▀▀░░░█░█░▀▄▀░█▀▀░█▀▄░▀
+                    ░▀▀▀░▀░▀░▀░▀░▀▀▀░░░▀▀▀░░▀░░▀▀▀░▀░▀░▀
+
+                  Hecho con ❤️ por Luis Miguel Gonzalez G.♞
+                    
+═══════════════════════════════════════════════════════════════════════════════
+```
+
+</div>
