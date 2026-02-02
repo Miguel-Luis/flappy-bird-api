@@ -63,7 +63,7 @@
 │                       ANTES DE COMENZAR                                  │
 ├──────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│   ◈ Node.js      v125.5.0 o superior [https://nodejs.org]                │
+│   ◈ Node.js      v25.5.0 o superior [https://nodejs.org]                │
 │   ◈ npm          v11.8.0 o superior  (viene con Node.js)                 │
 │   ◈ nvm          v1.2.2 o superior   [https://www.nvmnode.com/guide/download.html]
 │   ◈ PostgreSQL   v18.1 o superior    [https://postgresql.org]            │
